@@ -1,5 +1,5 @@
-# Proyecto-de-IA
-Proyecto de aplicación de modelo de IA.
+# Proyecto de IA
+
 
 
 ## Planteamiento del problema :
@@ -13,7 +13,7 @@ La diabetes tipo 2 es una enfermedad metabólica común que afecta a millones de
 ### Objetivo:
 
 Desarrollar un modelo de clasificación que prediga si una persona tiene diabetes en base a un conjunto de variables clínicas extraídas de un dataset médico, con un metodo de aprendizaje supervisado para el dataset
-Pima Indians Diabetes [Dataset](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database) 
+Pima Indians Diabetes [Dataset](https://www.kaggle.com/datasets/uciml/pima-indians-diabetes-database).
 
 ## Modelos
 
@@ -23,7 +23,7 @@ Para abordar este problema, se seleccionaron tres modelos con diferentes fortale
 
 
 
-### Regresión Logística
+#### Regresión Logística
 
 **Ventajas:**
 - Altamente interpretable: permite identificar qué variables contribuyen más a la probabilidad de tener diabetes.
@@ -39,7 +39,7 @@ Se utiliza como punto de partida para establecer un benchmark básico y comprens
 
 
 
-### Árbol de Decisión
+#### Árbol de Decisión
 
 **Ventajas:**
 - Interpretable visualmente: entrega reglas claras y comprensibles.
@@ -55,7 +55,7 @@ Adecuado para representar decisiones clínicas simples del tipo “si glucosa > 
 
 
 
-### Random Forest
+#### Random Forest
 
 **Ventajas:**
 - Mayor precisión y robustez que modelos individuales.
