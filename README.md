@@ -177,3 +177,53 @@ A continuación presentamos de forma concisa los hallazgos más relevantes de to
 > **Conclusión breve**  
 
 > El **Random Forest tuned** ofrece el mejor compromiso entre precision y recall (F1 = 0.62, AUC = 0.837, AP = 0.650) y generaliza bien, por lo que es el candidato ideal para un sistema de alerta de churn en producción. Si la transparencia de decisiones es clave, la **Regresión Logística tuned** (AUC = 0.840) sigue siendo una alternativa sólida.  
+
+
+### Conclusiones
+
+Tras el análisis completo del proyecto de predicción de churn, extraemos las siguientes conclusiones claras y ordenadas:
+
+#### 1. Desempeño de los modelos  
+- **Random Forest (tuned)**  
+  - **F1-test**: 0.62  
+  - **AUC-test**: 0.837  
+  - **AP (Precision–Recall)**: 0.650  
+  - Es el modelo más equilibrado, con buena capacidad de discriminación y balance entre precisión y recall.  
+- **Regresión Logística (tuned)**  
+  - **F1-test**: 0.61  
+  - **AUC-test**: 0.845  
+  - **AP**: 0.632  
+  - Destaca por su AUC ligeramente superior y por la interpretabilidad de sus coeficientes.  
+- **Árbol de Decisión (tuned)**  
+  - **F1-test**: 0.62  
+  - **AUC-test**: 0.832  
+  - **AP**: 0.547  
+  - Ofrece reglas de decisión claras, pero muestra menor robustez frente a cambios en los datos.
+
+#### 2. Interpretación de métricas clave  
+- **Precision vs. Recall**  
+  - La logística maximiza recall (0.78) capturando casi todos los churners, a costa de más falsas alarmas.  
+  - El RF tuned mejora la precision (0.57) sin sacrificar demasiado el recall (0.68).  
+- **AUC (ROC)**  
+  - Mide la capacidad global de separación de clases; la regresión logística lidera con 0.845.  
+- **AP (Curva PR)**  
+  - Indica eficacia al identificar churners en escenarios desbalanceados; RF tuned alcanza 0.650, el valor más alto.
+
+#### 3. Factores determinantes  
+- **Tenure** y **TotalCharges**: principales predictores en todos los modelos.  
+- **Contrato “Month-to-month”**: claramente asociado a mayor churn.  
+- **Servicio de Internet (Fiber optic)**: incrementa la probabilidad de abandono.
+
+#### 4. Limitaciones  
+1. **Desbalance de clases** (~26.5% churn): podría mejorarse con técnicas de sobremuestreo (SMOTE) o funciones de pérdida focalizadas.  
+2. **Variables no incluidas**: `SeniorCitizen` y `PaymentMethod` podrían aportar señal adicional.  
+3. **Análisis estático**: no contempla drift temporal; se recomienda monitoreo y retraining periódicos.
+
+#### 5. Recomendaciones y siguientes pasos  
+- **Nuevas features**: ratio `TotalCharges/tenure`, agrupar “No internet service” en un dummy único.  
+- **Modelos avanzados**: explorar XGBoost o LightGBM para mejorar las métricas en datasets heterogéneos.  
+- **Despliegue**: serializar los pipelines con `joblib` y exponerlos mediante FastAPI o Streamlit.  
+- **Monitoreo continuo**: generar dashboards que alerten de caídas en AUC o F1 por cambios en los datos.
+
+> **Cierre**  
+> El **Random Forest afinado** es el candidato óptimo para un sistema de alerta de churn en producción, gracias a su robustez y balance entre precision y recall. Si la trazabilidad de cada variable es prioritaria, la **Regresión Logística** sigue siendo una alternativa válida, con un desempeño competitivo y coeficientes de fácil interpretación.  
