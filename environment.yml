@@ -491,4 +491,3 @@ dependencies:
   - zope.interface=5.4.0
   - zstandard=0.23.0
   - zstd=1.5.6
-prefix: C:\Users\Aledm\anaconda3
